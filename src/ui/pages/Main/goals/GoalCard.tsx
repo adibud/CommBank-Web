@@ -12,7 +12,8 @@ import { Card } from '../../../components/Card'
 type Props = { id: string }
 
 const Icon = styled.h1`
-  font-size: 5.5rem;
+  font-size: 6rem;
+  cursor: pointer;
 `
 
 export default function GoalCard(props: Props) {
@@ -35,6 +36,12 @@ export default function GoalCard(props: Props) {
       <TargetDate>{asLocaleDateString(goal.targetDate)}</TargetDate>
       <Icon>{goal.icon}</Icon>
     </Container>
+  )
+  
+  return (
+    <TransparentButton onClick={props.onClick}>
+      <Icon>{props.icon}</Icon>
+    </TransparentButton>
   )
 }
 
