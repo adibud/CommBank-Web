@@ -196,13 +196,23 @@ export function GoalManager(props: Props) {
   const hasIcon = () => icon != null
 
   const pickEmojiOnClick = (emoji: BaseEmoji, event: MouseEvent) => {
-    // TODO(TASK-2) Stop event propogation
-    // TODO(TASK-2) Set icon locally
-    // TODO(TASK-2) Close emoji picker
-    // TODO(TASK-2) Create updated goal locally
-    // TODO(TASK-2) Update Redux store
-    // TODO(TASK-3) Update database
+  event.stopPropagation()
+
+  setIcon(emoji.native)
+  setEmojiPickerIsOpen(false)
+
+  const updatedGoal: Goal = {
+    ...props.goal,
+    icon: emoji.native ?? props.goal.icon,
+    name: name ?? props.goal.name,
+    targetDate: targetDate ?? props.goal.targetDate,
+    targetAmount: targetAmount ?? props.goal.targetAmount,
   }
+
+  dispatch(updateGoalRedux(updatedGoal))
+
+  // TODO(TASK-3) Update database
+}
 
   return (
     {/* ... */}
